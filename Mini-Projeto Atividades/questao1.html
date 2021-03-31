@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questao 1</title>
+</head>
+<body>
+    <h1>Questao 1</h1>
+    <script>
+
+let valor;
+
+do {
+    valor = (prompt("Informe um numero entre 1 a 16: "));
+
+    if(valor <1 || valor>16){
+        alert(console.log("Numero invalido, tente novamente por um dos numeros selecionados.\n"));
+    }
+} while (valor<1 || valor>16);
+
+console.log("\nA - sequencia Fibonacci: \n");
+console.log(" 0");
+console.log(" 1");
+Fibonacci(valor);
+
+console.log("\nB - Fatorial: ");
+console.log("\n",valor,"! =",Fatorial(valor));
+
+console.log("\nC - Raiz quadrada: ");
+console.log("\n A raiz quadrada de",valor,"é: ",Raiz(valor),"\n");
+
+function Fibonacci(n)
+{
+
+	let i, A, B, C;
+
+	A = 0;
+	B = 1;
+
+    for(i=3; i<=n; i++)
+    {
+	
+    C = A + B;
+	console.log("",C);
+    A = B;
+    B = C;
+
+    }
+    
+}
+
+function Fatorial(N)
+{
+
+	let fatorial;
+	let controle;
+
+	fatorial = 1;
+
+    for(controle=2;controle<=N; controle++)
+    {
+
+	    fatorial = fatorial*controle;
+
+    }
+
+    return fatorial;     
+}
+
+function Raiz(v) 
+{
+    let RaizQ;
+     
+    RaizQ = v ** 0.5;
+
+    return RaizQ;
+}
+
+    </script>
+</body>
+</html>

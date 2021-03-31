@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>questao 2</title>
+</head>
+<body>
+    <h1>Farmacia</h1>
+    <script>
+
+        
+	let opcao;
+	let mascara_estoque, alcool_estoque, vacina_estoque;
+	let compra_mas, compra_alc, compra_vac;
+	let venda_mas, venda_alc, venda_vac;
+	let valor_compra_mas, valor_compra_alc, valor_compra_vac;
+	let valor_venda_mas, valor_venda_alc, valor_venda_vac;
+	let lucro_mas, lucro_alc, lucro_vac;
+	let porc_mas, porc_alc, porc_vac;
+	let lucro;
+	
+	
+	
+    	mascara_estoque=0;
+    	alcool_estoque=0;
+        vacina_estoque=0;
+        
+
+
+	    menu_principal();
+    
+
+    function menu_principal()
+    {
+        
+
+        opcao=0;
+        while(opcao!==6)
+        {
+            
+            console.log("\n\nControle dos Seguintes Produtos\n\n");
+            console.log("1 Máscara\n");
+            console.log("2 Álcool em gel\n");
+            console.log("3 Vacina da Covid-19\n");
+            console.log("4 Mostrar estoque atual de todos os produtos\n");
+            console.log("5 Mostrar Lucro das vendas\n");
+            console.log("6 Finalizar o programa\n");
+            opcao = (prompt("Informe o produto ou a informaçao que deseja obter"));
+            
+            if(opcao==1)
+            {
+                menu_mascara();
+            }
+            if(opcao==2)
+            {
+                menu_alcool();
+            }
+            if(opcao==3)
+            {
+                menu_vacina();
+            }
+            if(opcao==4)
+            {
+                mostrar_estoque();
+            }
+            if(opcao==5)
+            {
+                mostrar_lucro();
+            }
+            
+        }
+    }
+    
+    function mostrar_estoque()
+    {
+        
+        console.log("\n\nEstoque de Produtos \n\n");
+        console.log("\nEstoque atual de mascaras     : ", mascara_estoque);
+        console.log("\nEstoque atual de alcool em gel: ", alcool_estoque);
+        console.log("\nEstoque atual de vacinas      : ", vacina_estoque);
+    
+    }
+    
+
+    function menu_mascara()
+    {
+        opcao = 0;
+        while(opcao !== 5)
+        { 
+            
+            console.log("\n\nSubmenu - Gestão de Máscaras\n");
+            console.log("1 Registrar compra de máscaras\n");
+            console.log("2 Registrar venda de máscara\n");
+            console.log("3 Mostrar estoque atual de máscara\n");
+            console.log("4 Zerar estoque de máscara\n");
+            console.log("5 Voltar ao menu principal\n");
+            opcao = (prompt("Informe a opcao desejada"));
+            
+            if(opcao==1)
+            {
+                mascara_entrada();  
+            }
+            if(opcao==2)
+            {
+                mascara_saida();
+            }
+            if(opcao==3)
+            {
+                mascara_mostrar_estoque();
+            }
+            if(opcao==4)
+            {
+                mascara_zerar_estoque();
+            }
+            if(opcao==5)
+            {
+                menu_principal();
+            }
+        }
+    }
+    
+    function mascara_entrada() 
+    {
+        
+        console.log("\nAtualizar o estoque de mascaras\n");
+        compra_mas = (prompt("\nInsira o numero de novas mascaras compradas"));
+        
+        if(compra_mas >= 1){
+            mascara_estoque = mascara_estoque + compra_mas;
+            valor_compra_mas = compra_mas * 12.00;
+            console.log("\nNumero de mascaras atual: ",mascara_estoque);
+            console.log("\nCom cada mascara sendo comprada a R$12.00, o valor da compra foi: ",valor_compra_mas);
+            
+        }else{
+            opcao=0;
+            while(opcao!==2){
+		    
+                console.log("\nNenmhum numero da compra de mascara foi adicionado\n");
+                console.log("1. Quer Tentar Novamente\n");
+                console.log("2. Encerrar sessão\n");
+                opcao = (prompt("Informe qual opção deseja\n"));
+           
+            if(opcao==1)
+            {
+                mascara_entrada();
+            }
+          }    
+        }
+    }
+    
+    function mascara_saida()
+    {
+        
+        console.log("\nAtualizar o estoque de mascaras\n");
+        venda_mas = (prompt("\nInsira o numero de mascaras vendidas"));
+        
+        if(venda_mas >= 1){
+            mascara_estoque = mascara_estoque - venda_mas;
+            valor_venda_mas = venda_mas * 18.90;
+            porc_mas = venda_mas * 12.00;
+            lucro_mas = ((valor_venda_mas - porc_mas)/ porc_mas) *100;
+            console.log("\nNumero de mascaras atual: ",mascara_estoque);
+            console.log("\nCom cada mascara sendo vendida a R$18.90, o valor da venda ao cliente foi: ",valor_venda_mas);
+            console.log("\nLucro da farmacia, em porcentagem,da venda ao cliente é: ", lucro_mas,"%");
+            
+        }else{
+            opcao=0;
+            while(opcao!==2){
+		    
+                console.log("\nNenmhum numero de venda de mascara foi adicionado\n");
+                console.log("1. Quer Tentar Novamente\n");
+                console.log("2. Encerrar sessão\n");
+                opcao = (prompt("Informe qual opção deseja\n"));
+           
+            if(opcao==1)
+            {
+                mascara_saida(); 
+            }
+          }    
+        }
+    }
+    
+    function mascara_mostrar_estoque()
+    {
+        
+        if(mascara_estoque >= 1){
+        mascara_estoque = mascara_estoque + 0;    
+        console.log("\nEstoque atual de mascara: ",mascara_estoque);
+        
+        }else{
+            console.log("\nNão há mascara no estoque.\n");
+            
+        }
+    }
+    function mascara_zerar_estoque()
+    {
+        
+        if(mascara_estoque >= 1){
+        mascara_estoque = mascara_estoque - mascara_estoque;    
+        console.log("\nEstoque de mascara zerado= ",mascara_estoque);
+        
+        }else{
+            console.log("\nNão há mascara no estoque.\n");
+            
+        }
+    }
+    
+    
+    
+    
+    //Alcool
+    function menu_alcool()
+    {
+        opcao=0;
+        while(opcao!==5)
+        {
+            
+            console.log("\n\nSubmenu - Gestão álcool em gel\n\n");
+            console.log("1 Registrar compra de álcool em gel\n");
+            console.log("2 Registrar venda de álcool em gel\n");
+            console.log("3 Mostrar estoque atual de álcool em gel\n");
+            console.log("4 Zerar estoque de álcool em gel\n");
+            console.log("5 Voltar ao menu anterior\n");
+            opcao = (prompt("Informe a opcao desejada"));
+            
+                if(opcao==1)
+            {
+                alcool_entrada();
+            }
+            if(opcao==2)
+            {
+                alcool_saida();
+            }
+            if(opcao==3)
+            {
+                alcool_mostrar_estoque();
+            }
+            if(opcao==4)
+            {
+                alcool_zerar_estoque();
+            }
+            if(opcao==5)
+            {
+                menu_principal();
+            }
+        }
+    }
+    
+    function alcool_entrada()
+    {
+        
+        console.log("\nAtualizar o estoque de alcool em gel\n");
+        compra_alc = (prompt("\nInsira o numero de novos alcool em gel comprados"));
+        
+        if(compra_alc >= 1){
+            alcool_estoque = alcool_estoque + compra_alc;
+            valor_compra_alc = compra_alc * 8.00;
+            console.log("\nNumero de alcool em gel atual: ",alcool_estoque);
+            console.log("\nCom cada alcool em gel sendo comprada a R$8.00, o valor da compra foi:",valor_compra_alc);
+            
+        }else{
+            opcao=0
+            while(opcao!=2){
+		    
+                console.log("\nNenmhum numero da compra de alcool em gel adicionado\n");
+                console.log("1. Quer Tentar Novamente\n");
+                console.log("2. Encerrar sessão\n");
+                opcao = (prompt("Informe qual opção deseja"));
+           
+            if(opcao==1)
+            {
+                alcool_entrada(); 
+            }
+          }    
+        }
+    }
+    
+    function alcool_saida()
+    {
+        
+        console.log("\nAtualizar o estoque de alcool em gel\n");
+        venda_alc = (prompt("\nInsira o numero de alcool em gel vendidas"));
+        
+        if(venda_alc >= 1){
+            alcool_estoque = alcool_estoque - venda_alc;
+            valor_venda_alc = venda_alc * 10.90;
+            porc_alc = venda_alc * 8.00;
+            lucro_alc = ((valor_venda_alc - porc_alc)/ porc_alc) *100 ;
+            console.log("\nNumero de alcool em gel atual: ",alcool_estoque);
+            console.log("\nCom cada alcool em gel sendo vendida a R$10.90, o valor da venda ao cliente foi: ",valor_venda_alc);
+            console.log("\nLucro da farmacia, em porcentagem,da venda ao cliente é: ", lucro_alc,"%");
+            
+        }else{
+            opcao=0;
+            while(opcao!=2){
+		    
+                console.log("\nNenmhum numero de venda de alcool em gel foi adicionado\n");;
+                console.log("1. Quer Tentar Novamente\n");
+                console.log("2. Encerrar sessão\n");
+                opcao = (prompt("Informe qual opção deseja"));
+           
+            if(opcao==1)
+            {
+                alcool_saida();
+            }
+          }    
+        }
+    }
+    
+    function alcool_mostrar_estoque()
+    {
+        
+        if(alcool_estoque >= 1){
+        alcool_estoque = alcool_estoque + 0;    
+        console.log("\nEstoque atual de alcool em gel: ",alcool_estoque);
+        
+        }else{
+            console.log("\nNão há alcool em gel no estoque.\n");
+            
+        }
+    }
+    function alcool_zerar_estoque()
+    {
+        
+        if(alcool_estoque >= 1){
+        alcool_estoque = alcool_estoque - alcool_estoque;    
+        console.log("\nEstoque de alcool em gel zerado= ",alcool_estoque)
+        
+        }else{
+            console.log("\nNão há alcool em gel no estoque.\n");
+            
+        }
+    }
+        
+        
+    
+    
+    // vacina
+    function menu_vacina()
+    {
+        opcao=0;
+        while(opcao!=5)
+        {
+            
+            console.log("\n\nSubmenu - Gestão vacina da COVID-19\n\n");
+            console.log("1 Registrar compra de vacina da COVID-19\n");
+            console.log("2 Registrar venda de vacina da COVID-19\n");
+            console.log("3 Mostrar estoque atual de vacina da COVID-19\n");
+            console.log("4 Zerar estoque de álcool vacina da COVID-19\n");
+            console.log("5 Voltar ao menu anterior\n");
+            opcao = (prompt("Informe a opcao desejada"));
+
+            if(opcao==1)
+            {
+                vacina_entrada();
+            }
+            if(opcao==2)
+            {
+                vacina_saida();
+            }
+            if(opcao==3)
+            {
+                vacina_mostrar_estoque();
+            }
+            if(opcao==4)
+            {
+                vacina_zerar_estoque();
+            }
+            if(opcao==5)
+            {
+                menu_principal();
+            }
+        }
+    }
+
+    function vacina_entrada()
+    {
+        
+        console.log("\nAtualizar o estoque de vacinas da COVID-19\n");
+        compra_vac = (prompt("\nInsira o numero de novas vacinas da COVID-19 compradas"));
+        
+        if(compra_vac >= 1){
+            vacina_estoque = vacina_estoque + compra_vac;
+            valor_compra_vac = compra_vac * 150.00;
+            console.log("\nNumero de vacinas da COVID-19 atual: ",vacina_estoque);
+            console.log("\nCom cada vacinas da COVID-19 sendo comprada a R$150.00, o valor da compra foi: ",valor_compra_vac);
+            
+        }else{
+            opcao=0;
+            while(opcao!=2){
+		    
+                console.log("\nNenmhum numero da compra de vacinas da COVID-19 foi adicionado\n");
+                console.log("1. Quer Tentar Novamente\n");
+                console.log("2. Encerrar sessão\n");
+                opcao = (prompt("Informe qual opção deseja"));
+           
+            if(opcao==1)
+            {
+                vacina_entrada();
+            }
+          }    
+        }
+    }
+    
+    function vacina_saida()
+    {
+        
+        console.log("\nAtualizar o estoque de vacinas da COVID-19\n");
+        venda_vac(prompt("\nInsira o numero de vacinas da COVID-19 vendidas"));
+        
+        if(venda_vac >= 1){
+            vacina_estoque = vacina_estoque - venda_vac;
+            valor_venda_vac = venda_vac * 199.90;
+            porc_vac = venda_vac * 150.00;
+            lucro_vac = ((valor_venda_vac - porc_vac)/ porc_vac) *100; 
+            console.log("\nNumero de vacina da COVID-19 atual: ",vacina_estoque);
+            console.log("\nCom cada vacina da COVID-19 sendo vendida a R$199.90, o valor da venda ao cliente foi: ",valor_venda_vac);
+            console.log("\nLucro da farmacia, em porcentagem,da venda ao cliente é: ", lucro_vac,"%");
+            
+        }else{
+            opcao=0;
+            while(opcao!=2){
+		    
+                console.log("\nNenmhum numero de venda de vacinas da COVID-19 foi adicionado\n");
+                console.log("1. Quer Tentar Novamente\n");
+                console.log("2. Encerrar sessão\n");
+                opcao = (prompt("Informe qual opção deseja"));
+           
+            se(opcao==1)
+            {
+                vacina_saida();
+            }
+          }    
+        }
+    }
+    
+    function vacina_mostrar_estoque()
+    {
+        
+        if(vacina_estoque >= 1){
+        vacina_estoque = vacina_estoque + 0;
+        console.log("\nEstoque atual de vacinas da COVID-19: ",vacina_estoque);
+        
+        }else{
+            console.log("\nNão há vacinas da COVID-19 no estoque.\n");
+            
+        }
+    }
+    function vacina_zerar_estoque()
+    {
+        
+        if(vacina_estoque >= 1){
+        vacina_estoque = vacina_estoque - vacina_estoque;    
+        console.log("\nEstoque de vacina da COVID-19 zerado= ",vacina_estoque);
+        
+        }else{
+            console.log("\nNão há vacinas da COVID-19 no estoque.\n");
+            
+        }
+    }
+    function mostrar_lucro()
+    {
+        
+        if((valor_venda_mas + valor_venda_alc + valor_venda_vac)>=1){
+	    lucro = ((valor_venda_mas + valor_venda_alc + valor_venda_vac) - (porc_mas + porc_alc + porc_vac));
+	    console.log("\nLucros das vendas é:\n",lucro);
+	    
+        }else{
+            console.log("\nNão houve vendas de nenhum dos três produtos da famarcia\n");
+	        
+        }
+    }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificação</title>
+</head>
+<body>
+    <h1>Verificação CPF e RG</h1>
+    <script> 
+
+let CPF;
+let RG;
+
+CPF = (prompt("Informe um numero de CPF"));
+RG = (prompt("Informe um numero de RG de SP"));
+
+// RG's registrados pela SSP-SP como exemplo
+// 313223350
+// 457753262
+// 249842877
+// 924321179
+
+console.log("O CPF informado é ",CPF);
+console.log("O RG informado é ",RG);
+
+alert(TestaCPF(CPF));
+alert(TestaRG(RG));
+
+function TestaCPF(CPF) 
+{
+    let Soma;
+    let Resto;
+    Soma = 0;
+
+  if (CPF == "00000000000")
+  {
+    return "CPF não valido";
+  } 
+
+  for (i=1; i<=9; i++) 
+  {
+    Soma = Soma + parseInt(CPF.substring(i-1, i)) * (11 - i);
+  }
+
+  Resto = (Soma * 10) % 11;
+
+    if ((Resto == 10) || (Resto == 11))
+    {  
+        Resto = 0;
+    } else if (Resto != parseInt(CPF.substring(9, 10)) )
+    { 
+        return "CPF não valido";
+    }    
+
+  Soma = 0;
+
+    for (i = 1; i <= 10; i++) 
+    { 
+        Soma = Soma + parseInt(CPF.substring(i-1, i)) * (12 - i);
+    }
+
+    Resto = (Soma * 10) % 11;
+
+    if ((Resto == 10) || (Resto == 11))  
+    {
+    Resto = 0;
+    } else if (Resto != parseInt(CPF.substring(10, 11) ) ) 
+    {
+        return "CPF não valido";
+    } else {    
+        return "CPF valido";
+    }    
+
+}
+
+function TestaRG(RG) 
+{
+
+    let Resto1;
+
+  if (RG == "000000000")
+  {
+    return "RG não valido";
+  } 
+
+  Resto1 = ((RG[8]*100) + (RG[0]*2) + (RG[7]*9) + (RG[1]*3) + (RG[2]*4) + (RG[3]*5) + (RG[4]*6) + (RG[5]*7) + (RG[6]*8)) % 11;
+
+
+    if (Resto1 == 0)   
+    {
+        return "RG valido";
+    } else 
+    {
+        return "RG não valido";
+    } 
+}
+
+    </script>
+</body>
+</html>
